@@ -1,0 +1,17 @@
+@model Product
+@{
+    ViewData["Title"] = "Редагувати товар";
+}
+<a class="back" asp-action="Index">← До списку</a>
+<h1>Редагувати товар #@Model.Id</h1>
+<div class="panel form-panel">
+    <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+        <input type="hidden" asp-for="Id" />
+        <div asp-validation-summary="ModelOnly" class="validation"></div>
+        <partial name="_ProductFields" model="Model" />
+        <div class="form-actions">
+            <button class="button" type="submit">Зберегти зміни</button>
+            <a class="button button-outline" asp-action="Index">Скасувати</a>
+        </div>
+    </form>
+</div>

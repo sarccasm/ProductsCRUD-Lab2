@@ -1,0 +1,16 @@
+@model Product
+@{
+    ViewData["Title"] = "Видалити товар";
+}
+<a class="back" asp-action="Index">← До списку</a>
+<h1>Видалити товар?</h1>
+<div class="panel form-panel">
+    <p>Ви впевнені, що хочете видалити <strong>@Model.Name</strong> (#@Model.Id)?</p>
+    <p class="muted">Цю дію не можна скасувати в межах поточного запуску.</p>
+    <form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+        <div class="form-actions">
+            <button class="button button-danger" type="submit">Так, видалити</button>
+            <a class="button button-outline" asp-action="Index">Скасувати</a>
+        </div>
+    </form>
+</div>

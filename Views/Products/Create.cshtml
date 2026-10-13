@@ -1,0 +1,16 @@
+@model Product
+@{
+    ViewData["Title"] = "Додати товар";
+}
+<a class="back" asp-action="Index">← До списку</a>
+<h1>Додати новий товар</h1>
+<div class="panel form-panel">
+    <form asp-action="Create" method="post">
+        <div asp-validation-summary="ModelOnly" class="validation"></div>
+        <partial name="_ProductFields" model="Model" />
+        <div class="form-actions">
+            <button class="button" type="submit">Зберегти товар</button>
+            <a class="button button-outline" asp-action="Index">Скасувати</a>
+        </div>
+    </form>
+</div>

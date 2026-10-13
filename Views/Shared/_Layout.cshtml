@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] | ProductsCRUD</title>
+    <link rel="stylesheet" asp-href-include="~/css/site.css" />
+</head>
+<body>
+    <header class="topbar">
+        <div class="container nav">
+            <a class="brand" asp-controller="Products" asp-action="Index">ProductsCRUD</a>
+            <a asp-controller="Products" asp-action="Index">Усі товари</a>
+            <a asp-controller="Products" asp-action="Create">Додати товар</a>
+        </div>
+    </header>
+    <main class="container">
+        @if (TempData["Message"] is string message)
+        {
+            <div class="notice" role="status">@message</div>
+        }
+        @RenderBody()
+    </main>
+    <footer class="container footer">Лабораторна робота №2 · ASP.NET Core MVC · In-Memory CRUD</footer>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,17 @@
+@model Product
+@{
+    ViewData["Title"] = "Деталі товару";
+    var categories = (Dictionary<int, string>)ViewBag.CategoryNames;
+}
+<a class="back" asp-action="Index">← До списку</a>
+<h1>@Model.Name</h1>
+<div class="panel detail"><dl>
+    <dt>ID</dt><dd>#@Model.Id</dd>
+    <dt>Назва</dt><dd>@Model.Name</dd>
+    <dt>Опис</dt><dd>@(string.IsNullOrWhiteSpace(Model.Description) ? "Не вказано" : Model.Description)</dd>
+    <dt>Ціна</dt><dd>@Model.Price.ToString("N2") грн</dd>
+    <dt>Категорія</dt><dd>@categories.GetValueOrDefault(Model.CategoryId, "Невідомо")</dd>
+</dl><div class="form-actions">
+    <a class="button" asp-action="Edit" asp-route-id="@Model.Id">Редагувати</a>
+    <a class="button button-outline" asp-action="Delete" asp-route-id="@Model.Id">Видалити</a>
+</div></div>

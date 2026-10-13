@@ -1,0 +1,24 @@
+@model IReadOnlyList<Product>
+@{
+    ViewData["Title"] = "Список товарів";
+    var categories = (Dictionary<int, string>)ViewBag.CategoryNames;
+}
+<div class="page-heading">
+    <div><p class="eyebrow">Лабораторна робота №2</p><h1>Каталог товарів</h1>
+    <p class="muted">Перегляд, створення, редагування та видалення товарів.</p></div>
+    <a class="button" asp-action="Create">+ Додати товар</a>
+</div>
+<div class="panel table-wrap"><table>
+    <thead><tr><th>ID</th><th>Назва</th><th>Ціна</th><th>Категорія</th><th>Дії</th></tr></thead>
+    <tbody>
+    @foreach (var product in Model)
+    {
+        <tr><td>#@product.Id</td><td><strong>@product.Name</strong><div class="small muted">@product.Description</div></td>
+        <td>@product.Price.ToString("N2") грн</td><td>@categories.GetValueOrDefault(product.CategoryId, "Невідомо")</td>
+        <td class="actions"><a asp-action="Details" asp-route-id="@product.Id">Деталі</a>
+        <a asp-action="Edit" asp-route-id="@product.Id">Змінити</a>
+        <a class="danger-text" asp-action="Delete" asp-route-id="@product.Id">Видалити</a></td></tr>
+    }
+    @if (Model.Count == 0) { <tr><td colspan="5" class="empty">Товарів поки немає.</td></tr> }
+    </tbody>
+</table></div>
